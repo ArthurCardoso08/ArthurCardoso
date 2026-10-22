@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <meta name="mobile-web-app-capable" content="yes">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Arthur Neves Cardoso — desenvolvimento web, landing pages futuristas, responsivas e focadas em conversão.">
@@ -382,6 +383,41 @@
       .brand{font-size:15px}
       .status{font-size:10px}
     }
+
+    /* ===== Desempenho mobile: reduzir efeitos durante a rolagem ===== */
+    @media (max-width: 700px), (hover: none) and (pointer: coarse) {
+      /* Desativa animações decorativas contínuas e transições pesadas em telas touch. */
+      .noise, .scan, .orbit, .scroll-cue span,
+      .hud .live i, .status i, .marquee-track,
+      .work-intro .hint span::after, .art-4 .blob {
+        animation: none !important;
+      }
+      .noise { display: none !important; }
+      .orbit { display: none !important; }
+      .scan { display: none !important; }
+      .portrait-card, .portrait-card img, .project .bg,
+      .line-mask > span, .cta-giant, .nav, .btn,
+      .landing-info-toggle, .toggle-icon {
+        transform: none !important;
+        will-change: auto !important;
+      }
+      .portrait-card { transform-style: flat; }
+      .portrait-card img { height: 100%; }
+      .marquee-track { width: 100%; }
+      .marquee-item { white-space: normal; flex-wrap: wrap; gap: 12px; }
+      .svc, .fact, .about-card, .chip, .nav, .btn-ghost,
+      .marquee, footer, .p-tag {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+      }
+      .svc::before, .svc::after { display: none !important; }
+      .project .bg, .project:hover .bg { transition: none !important; transform: none !important; }
+      .reveal, .hero-in, .hero-in-r {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
     @media (prefers-reduced-motion:reduce){
       *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
     }
