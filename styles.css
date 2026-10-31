@@ -537,3 +537,9 @@
   .theme-picks{display:flex;gap:7px;margin-left:auto}
   .theme-dot{width:18px;height:18px}
 }
+
+/* Logo: parte vermelha segue a cor do tema; parte branca fixa */
+.brand-logo{position:relative;display:inline-block;width:42px;height:30px;flex:none}
+.brand-logo i{position:absolute;inset:0;display:block;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;transition:background-color .5s var(--ease)}
+.brand-logo .lg-a{background:var(--red);-webkit-mask-image:url(assets/logo-accent.png);mask-image:url(assets/logo-accent.png)}
+.brand-logo .lg-c{background:#f3f1ee;-webkit-mask-image:url(assets/logo-white.png);mask-image:url(assets/logo-white.png)}
