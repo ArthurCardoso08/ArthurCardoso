@@ -488,26 +488,20 @@
     /* Theme-wide accent override: every accent follows the selected palette. */
     :root{--accent-rgb:255,42,42;--brand-filter:none}
     :root[data-theme="violet"]{--accent-rgb:168,85,247;--brand-filter:hue-rotate(70deg) saturate(1.4)}
-    :root[data-theme="blue"]{--accent-rgb:23,70,162;--brand-filter:hue-rotate(205deg) saturate(1.5)}\n    :root[data-theme="pink"]{--accent-rgb:255,94,188;--brand-filter:hue-rotate(125deg) saturate(1.7)}
+    :root[data-theme="blue"]{--accent-rgb:23,70,162;--brand-filter:hue-rotate(205deg) saturate(1.5)}
+    :root[data-theme="pink"]{--accent-rgb:255,94,188;--brand-filter:hue-rotate(125deg) saturate(1.7)}
     :root[data-theme="green"]{--accent-rgb:74,222,128;--brand-filter:none}
     .cursor-ring.hover{background:rgba(var(--accent-rgb),.12);border-color:var(--red)}
     .step.on .step-dot{box-shadow:0 0 0 6px rgba(var(--accent-rgb),.1),0 0 24px rgba(var(--accent-rgb),.5)}
     .loader-bar{background:var(--red);box-shadow:0 0 20px var(--red)}
     
   
-    .spotify-card{position:relative;z-index:3;margin:24px 0 30px;padding:20px;border:1px solid var(--line-2);border-radius:18px;background:linear-gradient(135deg,rgba(255,255,255,.055),rgba(255,255,255,.015));backdrop-filter:blur(16px);max-width:560px}
-    .spotify-card-label,.spotify-bottom{display:flex;justify-content:space-between;align-items:center;gap:12px;font:10px var(--font-m);letter-spacing:.12em;color:var(--muted)}
-    .spotify-eq{display:inline-flex;align-items:center;gap:3px;height:14px;margin-right:8px}.spotify-eq i{width:3px;height:7px;border-radius:2px;background:var(--red);animation:spotifyBars .8s ease-in-out infinite alternate}.spotify-eq i:nth-child(2){height:13px;animation-delay:.2s}.spotify-eq i:nth-child(3){height:9px;animation-delay:.4s}
-    @keyframes spotifyBars{to{transform:scaleY(.35)}}
-    .spotify-main{display:flex;align-items:center;gap:14px;margin:18px 0}.spotify-cover{width:62px;height:62px;object-fit:cover;border-radius:9px;box-shadow:0 8px 25px rgba(0,0,0,.3)}.spotify-track{min-width:0;display:flex;flex-direction:column;gap:4px}.spotify-track strong{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.spotify-track span{font-size:13px;color:var(--muted)}
-    .spotify-connect{border:1px solid var(--line-2);border-radius:999px;padding:8px 12px;background:transparent;color:var(--text);font:10px var(--font-m);cursor:pointer}.spotify-connect:hover{border-color:var(--red);color:var(--red)}.spotify-bottom [data-spotify-status]{font-size:9px}
-    @media(max-width:520px){.spotify-bottom{align-items:flex-start;flex-direction:column}.spotify-connect{align-self:flex-start}}
 
   
     /* Corrige acentos residuais: todos acompanham a variável de tema. */
     .brand em,.navlinks a:hover,.navlinks a.active,.tag b,.eyebrow b,.arr,
     .project-num,.project-link:hover,.cta .tag b,.about-card a:hover,
-    .social-ic:hover,.scroll-hint,.step-num,.spotify-eq i {color:var(--red)}
+    .social-ic:hover,.scroll-hint,.step-num {color:var(--red)}
     .btn-primary,.theme-dot.active:after,.loader-bar,.cursor-ring.hover {background-color:var(--red)}
     .project-link:hover,.btn:hover,.social-ic:hover {border-color:var(--red)}
     .brand-logo{filter:none!important;mix-blend-mode:normal!important}
@@ -518,3 +512,28 @@
 :root[data-theme="blue"]{--accent-rgb:23,70,162}
 :root[data-theme="pink"]{--accent-rgb:255,94,188}
 :root[data-theme="green"]{--accent-rgb:74,222,128}
+
+/* ===== Navbar responsiva (tablet e celular) =====
+   Idioma e cor do tema continuam visíveis em todas as telas. */
+@media (max-width:860px){
+  .hero{padding-top:150px}
+  .nav{flex-wrap:wrap;justify-content:flex-start;row-gap:10px;column-gap:10px;padding:10px 12px;border-radius:26px}
+  .brand{order:1}
+  .site-controls{order:2;margin-left:auto;gap:8px}
+  .lang-label{display:inline}
+  .theme-picks{display:flex;gap:6px;padding-left:0}
+  .theme-dot{width:16px;height:16px}
+  .nav-cta{order:3}
+  .navlinks{display:flex;order:4;width:100%;justify-content:center;gap:4px}
+  .navlinks a{padding:7px 12px;font-size:12.5px}
+}
+@media (max-width:520px){
+  .hero{padding-top:184px}
+  .nav{padding:10px 10px 10px 14px;row-gap:10px}
+  .nav-cta{margin-left:auto;padding:9px 13px;font-size:12px}
+  .navlinks{order:4;width:100%}
+  .site-controls{order:5;width:100%;margin-left:0;justify-content:space-between;gap:10px}
+  #language-select{flex:1 1 auto;min-width:0;max-width:none}
+  .theme-picks{display:flex;gap:7px;margin-left:auto}
+  .theme-dot{width:18px;height:18px}
+}
