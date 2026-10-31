@@ -110,12 +110,13 @@
             vA = .35+.65*smoothstep(-.4,1.,n+aRand*.6);
           }`,
         fragmentShader: `
+          uniform vec3 uAccent;
           varying float vR; varying float vA;
           void main(){
             vec2 c = gl_PointCoord-.5; float d = length(c);
             if(d>.5) discard;
             float a = smoothstep(.5,0.,d);
-            vec3 red = vec3(1.,.16,.14), white = vec3(1.,.93,.9);
+            vec3 red = uAccent, white = vec3(1.,.93,.9);
             vec3 col = mix(red, white, step(.86, vR));
             gl_FragColor = vec4(col, a*vA*.8);
           }`
