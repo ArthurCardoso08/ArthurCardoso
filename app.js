@@ -40,7 +40,7 @@
     $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
       const t = $(a.getAttribute('href')); if (!t) return;
       e.preventDefault();
-      lenis ? lenis.scrollTo(t, { offset: 0, duration: 1.6 }) : t.scrollIntoView({ behavior: 'smooth' });
+      lenis ? lenis.scrollTo(t, { offset: -((document.querySelector('.nav')?.offsetHeight || 0) + 12), duration: 1.6 }) : t.scrollIntoView({ behavior: 'smooth' });
     }));
     const toTop = $('.to-top');
     if (toTop) {
