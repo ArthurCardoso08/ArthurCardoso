@@ -287,7 +287,7 @@
 
     /* ---------- Clock ---------- */
     const tEl = $('.hud-time');
-    const tick = () => tEl.textContent = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'America/Sao_Paulo' }).format(new Date());
+    const tick = () => tEl.textContent = new Intl.DateTimeFormat(document.documentElement.lang || 'pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'America/Sao_Paulo' }).format(new Date());
     tick(); setInterval(tick, 1000);
 
     /* ---------- Pointer interactions (desktop) ---------- */
@@ -296,8 +296,14 @@
       const qd = { x: gsap.quickTo(dot, 'x', { duration: .08 }), y: gsap.quickTo(dot, 'y', { duration: .08 }) };
       const qr = { x: gsap.quickTo(ring, 'x', { duration: .45, ease: 'power3' }), y: gsap.quickTo(ring, 'y', { duration: .45, ease: 'power3' }) };
       addEventListener('pointermove', e => { qd.x(e.clientX); qd.y(e.clientY); qr.x(e.clientX); qr.y(e.clientY); });
-      $$('a, button, [data-cursor]').forEach(el => {
-        el.addEventListener('pointerenter', () => { ring.classList.add('hover'); lbl.textContent = el.dataset.cursor || (el.target === '_blank' ? 'ABRIR' : 'IR'); });
+      const cursorLabel = el => {
+        const t = window.portfolioT || {};
+        if (el.dataset.cursorI18n) return t[el.dataset.cursorI18n] || el.dataset.cursorI18n;
+        if (el.dataset.cursor) return el.dataset.cursor;
+        return el.getAttribute('target') === '_blank' ? (t.cursorOpen || 'ABRIR') : (t.cursorGo || 'IR');
+      };
+      $$('a, button, [data-cursor], [data-cursor-i18n]').forEach(el => {
+        el.addEventListener('pointerenter', () => { ring.classList.add('hover'); lbl.textContent = cursorLabel(el); });
         el.addEventListener('pointerleave', () => ring.classList.remove('hover'));
       });
 
@@ -681,58 +687,149 @@
 ;
 
 (() => {
+  const WA_NUMBER = '5538992188316';
   const translations = {
     pt: {
-      navProjects:'Projetos',navAbout:'Sobre',navContact:'Contato',visitSite:'Visitar site',available:'Disponível para novos projetos',
+      loaderTop:'Portfólio — 2026', loaderBot:'Inicializando experiência', hudOnline:'Online', hudScroll:'Scroll',
+      sideIndexAria:'Índice de seções', sideHome:'Início', sideProjects:'Projetos', sideAbout:'Sobre', sideContact:'Contato',
+      cursorOpen:'ABRIR', cursorView:'VER', cursorGo:'IR',
+      ariaHome:'Arthur Cardoso — início', navMain:'Principal', navProjects:'Projetos', navAbout:'Sobre', navCta:'Vamos conversar',
+      ariaCustom:'Personalização', ariaTheme:'Cor do tema', themeRed:'Vermelho', themeViolet:'Violeta', themeBlue:'Azul escuro', themePink:'Rosa', themeGreen:'Verde',
+      available:'Disponível para novos projetos', heroL1:'Ideias que', heroL2:'ganham vida.', heroL3:'Projetos com', heroL4:'personalidade.',
       heroCopy:'Eu sou <strong>Arthur Cardoso</strong>, desenvolvedor web. Transformo ideias em experiências digitais com identidade visual, interação e código.',
-      viewProjects:'Ver projetos',contact:'Entrar em contato',projectsLabel:'Projetos selecionados',
-      projectsTitle:'Projetos que <span class="red">ganham vida.</span>',projectsIntro:'Uma seleção de experiências digitais que desenvolvi.',
+      viewProjects:'Ver portfólio', contact:'Entrar em contato',
+      metaA1:'Web', metaA2:'Desenvolvimento', metaB1:'UI', metaB2:'Design de interface', metaC1:'Meu', metaC2:'Estilo próprio',
+      chipOnline:'✦ Online', chipReply:'Respondo em poucas horas', chip2Title:'Web developer', chip2Text:'Design · Interação · Código', scrollCue:'ROLE',
+      imgPortrait:'Retrato de Arthur Neves Cardoso',
+      mq1:'Desenvolvimento web', mq2:'Criatividade', mq3:'Experiências digitais', mq4:'Código',
+      projectsLabel:'Projetos selecionados', projectsTitle:'Projetos que <span class="red">ganham vida.</span>',
+      projectsIntro:'Uma seleção de experiências digitais que desenvolvi.', hint:'Continue rolando', liveTag:'No ar', stackMenu:'Cardápio',
       hotdogDesc:'Cardápio digital com pedidos integrados ao WhatsApp e experiência simples para o cliente.',
-      pizzaDesc:'Site de delivery para pizzas, lanches e bebidas, com navegação direta e pedidos pelo WhatsApp.',
-      aboutTag:'Sobre mim',aboutCopy:'Gosto de unir design, código e animações para transformar ideias em experiências digitais funcionais e visualmente marcantes.',
-      contactTag:'Vamos conversar',contactCopy:'Tem uma ideia ou projeto em mente? Vamos conversar e tirar do papel.',contactButton:'Falar sobre um projeto',instagram:'Ver Instagram',footerCopy:'Desenvolvimento web · Design de interface · Interações.'
+      pizzaDesc:'Site de delivery para pizzas, lanches e bebidas, com navegação direta e pedidos pelo WhatsApp.', visitSite:'Visitar site',
+      aboutTag:'Sobre mim', aboutBig1:'Eu desenvolvo', aboutBig2:'experiências', aboutBig3:'digitais.',
+      aboutIntro:'Sou <strong>Arthur Neves Cardoso</strong>, desenvolvedor web.',
+      aboutCopy:'Gosto de unir design, código e animações para transformar ideias em experiências digitais funcionais e visualmente marcantes.',
+      statResp:'Responsivo', statLoad:'Para carregar', statSell:'Página vendendo', statYour:'SUA', skillAnim:'Animações', skillAI:'IA',
+      ctaTag:'Seu próximo projeto', ctaG1:'Vamos', ctaG2:'criar.', ctaSr:'Vamos criar',
+      contactCopy:'Tem uma ideia ou projeto em mente? Vamos conversar e tirar do papel.', contactButton:'Falar sobre um projeto', instagram:'Ver Instagram',
+      footerCopy:'Desenvolvimento web · Design de interface · Interações.', footContact:'Contato', ariaSocial:'Redes sociais', ariaTech:'Tecnologias',
+      footNav:'Navegação', footServices:'Serviços', footPortfolio:'Portfólio', footProcess:'Processo',
+      footCopy:'© 2026 Arthur Neves Cardoso. Todos os direitos reservados.', footPrivacy:'Política de Privacidade',
+      docTitle:'Arthur Cardoso — Portfólio', metaDesc:'Arthur Neves Cardoso — desenvolvimento web, interfaces interativas e projetos digitais autorais.', ogLocale:'pt_BR',
+      waNav:'Olá Arthur! Vi seu portfólio e quero conversar sobre um projeto.',
+      waHero:'Olá Arthur! Quero criar uma landing page.',
+      waCta:'Olá Arthur! Quero conversar sobre um projeto web.'
     },
     en: {
-      navProjects:'Projects',navAbout:'About',navContact:'Contact',visitSite:'Visit website',available:'Available for new projects',
+      loaderTop:'Portfolio — 2026', loaderBot:'Initializing experience', hudOnline:'Online', hudScroll:'Scroll',
+      sideIndexAria:'Section index', sideHome:'Home', sideProjects:'Projects', sideAbout:'About', sideContact:'Contact',
+      cursorOpen:'OPEN', cursorView:'VIEW', cursorGo:'GO',
+      ariaHome:'Arthur Cardoso — home', navMain:'Main', navProjects:'Projects', navAbout:'About', navCta:'Let’s talk',
+      ariaCustom:'Customization', ariaTheme:'Theme color', themeRed:'Red', themeViolet:'Violet', themeBlue:'Dark blue', themePink:'Pink', themeGreen:'Green',
+      available:'Available for new projects', heroL1:'Ideas that', heroL2:'come alive.', heroL3:'Projects with', heroL4:'personality.',
       heroCopy:'I’m <strong>Arthur Cardoso</strong>, a web developer. I turn ideas into digital experiences through visual identity, interaction, and code.',
-      viewProjects:'View projects',contact:'Get in touch',projectsLabel:'Selected projects',
-      projectsTitle:'Projects that <span class="red">come alive.</span>',projectsIntro:'A selection of digital experiences I have built.',
+      viewProjects:'View projects', contact:'Get in touch',
+      metaA1:'Web', metaA2:'Development', metaB1:'UI', metaB2:'Interface design', metaC1:'My', metaC2:'Own style',
+      chipOnline:'✦ Online', chipReply:'I reply within a few hours', chip2Title:'Web developer', chip2Text:'Design · Interaction · Code', scrollCue:'ROLE',
+      imgPortrait:'Portrait of Arthur Neves Cardoso',
+      mq1:'Web development', mq2:'Creativity', mq3:'Digital experiences', mq4:'Code',
+      projectsLabel:'Selected projects', projectsTitle:'Projects that <span class="red">come alive.</span>',
+      projectsIntro:'A selection of digital experiences I have built.', hint:'Keep scrolling', liveTag:'Live', stackMenu:'Menu',
       hotdogDesc:'Digital menu with WhatsApp ordering and a simple customer experience.',
-      pizzaDesc:'Delivery website for pizza, snacks, and drinks, with straightforward navigation and WhatsApp orders.',
-      aboutTag:'About me',aboutCopy:'I combine design, code, and animation to turn ideas into functional, visually distinctive digital experiences.',
-      contactTag:'Let’s talk',contactCopy:'Have an idea or project in mind? Let’s talk and bring it to life.',contactButton:'Discuss a project',instagram:'View Instagram',footerCopy:'Web development · Interface design · Interactions.'
+      pizzaDesc:'Delivery website for pizza, snacks, and drinks, with straightforward navigation and WhatsApp orders.', visitSite:'Visit website',
+      aboutTag:'About me', aboutBig1:'I build', aboutBig2:'digital', aboutBig3:'experiences.',
+      aboutIntro:'I’m <strong>Arthur Neves Cardoso</strong>, a web developer.',
+      aboutCopy:'I combine design, code, and animation to turn ideas into functional, visually distinctive digital experiences.',
+      statResp:'Responsive', statLoad:'To load', statSell:'Page that sells', statYour:'YOUR', skillAnim:'Animations', skillAI:'AI',
+      ctaTag:'Your next project', ctaG1:'Let’s', ctaG2:'create.', ctaSr:'Let’s create',
+      contactCopy:'Have an idea or project in mind? Let’s talk and bring it to life.', contactButton:'Discuss a project', instagram:'View Instagram',
+      footerCopy:'Web development · Interface design · Interactions.', footContact:'Contact', ariaSocial:'Social networks', ariaTech:'Technologies',
+      footNav:'Navigation', footServices:'Services', footPortfolio:'Portfolio', footProcess:'Process',
+      footCopy:'© 2026 Arthur Neves Cardoso. All rights reserved.', footPrivacy:'Privacy Policy',
+      docTitle:'Arthur Cardoso — Portfolio', metaDesc:'Arthur Neves Cardoso — web development, interactive interfaces, and original digital projects.', ogLocale:'en_US',
+      waNav:'Hi Arthur! I saw your portfolio and want to talk about a project.',
+      waHero:'Hi Arthur! I want to create a landing page.',
+      waCta:'Hi Arthur! I want to talk about a web project.'
     },
     es: {
-      navProjects:'Proyectos',navAbout:'Sobre mí',navContact:'Contacto',visitSite:'Visitar sitio',available:'Disponible para nuevos proyectos',
+      loaderTop:'Portafolio — 2026', loaderBot:'Iniciando experiencia', hudOnline:'En línea', hudScroll:'Desplazar',
+      sideIndexAria:'Índice de secciones', sideHome:'Inicio', sideProjects:'Proyectos', sideAbout:'Sobre mí', sideContact:'Contacto',
+      cursorOpen:'ABRIR', cursorView:'VER', cursorGo:'IR',
+      ariaHome:'Arthur Cardoso — inicio', navMain:'Principal', navProjects:'Proyectos', navAbout:'Sobre mí', navCta:'Hablemos',
+      ariaCustom:'Personalización', ariaTheme:'Color del tema', themeRed:'Rojo', themeViolet:'Violeta', themeBlue:'Azul oscuro', themePink:'Rosa', themeGreen:'Verde',
+      available:'Disponible para nuevos proyectos', heroL1:'Ideas que', heroL2:'cobran vida.', heroL3:'Proyectos con', heroL4:'personalidad.',
       heroCopy:'Soy <strong>Arthur Cardoso</strong>, desarrollador web. Transformo ideas en experiencias digitales con identidad visual, interacción y código.',
-      viewProjects:'Ver proyectos',contact:'Contactar',projectsLabel:'Proyectos seleccionados',
-      projectsTitle:'Proyectos que <span class="red">cobran vida.</span>',projectsIntro:'Una selección de experiencias digitales que he desarrollado.',
+      viewProjects:'Ver proyectos', contact:'Contactar',
+      metaA1:'Web', metaA2:'Desarrollo', metaB1:'UI', metaB2:'Diseño de interfaces', metaC1:'Mi', metaC2:'Estilo propio',
+      chipOnline:'✦ En línea', chipReply:'Respondo en pocas horas', chip2Title:'Desarrollador web', chip2Text:'Diseño · Interacción · Código', scrollCue:'ROL',
+      imgPortrait:'Retrato de Arthur Neves Cardoso',
+      mq1:'Desarrollo web', mq2:'Creatividad', mq3:'Experiencias digitales', mq4:'Código',
+      projectsLabel:'Proyectos seleccionados', projectsTitle:'Proyectos que <span class="red">cobran vida.</span>',
+      projectsIntro:'Una selección de experiencias digitales que he desarrollado.', hint:'Sigue desplazando', liveTag:'En línea', stackMenu:'Menú',
       hotdogDesc:'Menú digital con pedidos por WhatsApp y una experiencia sencilla para el cliente.',
-      pizzaDesc:'Sitio de delivery de pizzas, aperitivos y bebidas, con navegación directa y pedidos por WhatsApp.',
-      aboutTag:'Sobre mí',aboutCopy:'Combino diseño, código y animaciones para transformar ideas en experiencias digitales funcionales y visualmente memorables.',
-      contactTag:'Hablemos',contactCopy:'¿Tienes una idea o proyecto en mente? Hablemos y hagámoslo realidad.',contactButton:'Hablar de un proyecto',instagram:'Ver Instagram',footerCopy:'Desarrollo web · Diseño de interfaces · Interacciones.'
+      pizzaDesc:'Sitio de delivery de pizzas, aperitivos y bebidas, con navegación directa y pedidos por WhatsApp.', visitSite:'Visitar sitio',
+      aboutTag:'Sobre mí', aboutBig1:'Creo', aboutBig2:'experiencias', aboutBig3:'digitales.',
+      aboutIntro:'Soy <strong>Arthur Neves Cardoso</strong>, desarrollador web.',
+      aboutCopy:'Combino diseño, código y animaciones para transformar ideas en experiencias digitales funcionales y visualmente memorables.',
+      statResp:'Responsivo', statLoad:'Para cargar', statSell:'Página que vende', statYour:'TU', skillAnim:'Animaciones', skillAI:'IA',
+      ctaTag:'Tu próximo proyecto', ctaG1:'Vamos', ctaG2:'crear.', ctaSr:'Vamos a crear',
+      contactCopy:'¿Tienes una idea o proyecto en mente? Hablemos y hagámoslo realidad.', contactButton:'Hablar de un proyecto', instagram:'Ver Instagram',
+      footerCopy:'Desarrollo web · Diseño de interfaces · Interacciones.', footContact:'Contacto', ariaSocial:'Redes sociales', ariaTech:'Tecnologías',
+      footNav:'Navegación', footServices:'Servicios', footPortfolio:'Portafolio', footProcess:'Proceso',
+      footCopy:'© 2026 Arthur Neves Cardoso. Todos los derechos reservados.', footPrivacy:'Política de privacidad',
+      docTitle:'Arthur Cardoso — Portafolio', metaDesc:'Arthur Neves Cardoso — desarrollo web, interfaces interactivas y proyectos digitales propios.', ogLocale:'es_ES',
+      waNav:'¡Hola Arthur! Vi tu portafolio y quiero hablar sobre un proyecto.',
+      waHero:'¡Hola Arthur! Quiero crear una landing page.',
+      waCta:'¡Hola Arthur! Quiero hablar sobre un proyecto web.'
     }
   };
-  const setText = (selector, value) => { const el=document.querySelector(selector); if(el && value) el.innerHTML=value; };
-  function setLanguage(lang){
-    const t=translations[lang]||translations.pt; document.documentElement.lang=lang==='pt'?'pt-BR':lang;
-    document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.dataset.i18n;if(t[key]) el.innerHTML=t[key];});
-    setText('.status', '<i></i>'+t.available); setText('.hero-copy',t.heroCopy);
-    const heroButtons=document.querySelectorAll('.hero-actions .btn'); if(heroButtons[0])heroButtons[0].innerHTML=t.viewProjects+' <span class="arr">↓</span>'; if(heroButtons[1])heroButtons[1].innerHTML=t.contact+' <span class="arr">↗</span>';
-    setText('.work-intro h2',t.projectsTitle); setText('.work-intro p',t.projectsIntro);
-    const desc=document.querySelectorAll('.project > div:last-child p'); if(desc[0])desc[0].textContent=t.hotdogDesc;if(desc[1])desc[1].textContent=t.pizzaDesc;
-    setText('.about-card > p:nth-child(2)',t.aboutCopy); setText('.cta .tag', '<b>03</b> '+t.contactTag); setText('.cta .wrap > p',t.contactCopy);
-    const cta=document.querySelector('.cta-actions .btn');if(cta)cta.innerHTML=t.contactButton+' <span class="arr">↗</span>';
-    const ig=document.querySelector('.cta-actions .btn-ghost');if(ig)ig.innerHTML=t.instagram+' <span class="arr">↗</span>';
-    const foot=document.querySelector('footer .foot > div p');if(foot)foot.textContent=t.footerCopy;
-    document.querySelectorAll('.navlinks a').forEach((a,i)=>{const sup=a.querySelector('sup');const label=i===0?t.navProjects:t.navAbout;a.textContent=label;if(sup)a.appendChild(sup)});
-    try{localStorage.setItem('portfolio-language',lang)}catch(e){}
+  const fallback = translations.pt;
+  const pick = (t, key) => (t[key] !== undefined ? t[key] : fallback[key]);
+  const setMeta = (selector, value) => {
+    const el = document.querySelector(selector);
+    if (el && value) el.setAttribute('content', value);
+  };
+
+  function setLanguage(lang) {
+    const code = translations[lang] ? lang : 'pt';
+    const t = translations[code];
+    window.portfolioT = t;
+    document.documentElement.lang = code === 'pt' ? 'pt-BR' : code;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const value = pick(t, el.dataset.i18n);
+      if (value !== undefined) el.innerHTML = value;
+    });
+    document.querySelectorAll('[data-i18n-attrs]').forEach(el => {
+      el.dataset.i18nAttrs.split(';').forEach(pair => {
+        const [attr, key] = pair.split(':').map(s => s.trim());
+        const value = attr && key ? pick(t, key) : undefined;
+        if (value) el.setAttribute(attr, value);
+      });
+    });
+    document.querySelectorAll('[data-wa-msg]').forEach(el => {
+      const message = pick(t, el.dataset.waMsg);
+      if (message) el.href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+    });
+
+    document.title = t.docTitle;
+    setMeta('meta[name="description"]', t.metaDesc);
+    setMeta('meta[property="og:title"]', t.docTitle);
+    setMeta('meta[property="og:description"]', t.metaDesc);
+    setMeta('meta[property="og:locale"]', t.ogLocale);
+    setMeta('meta[name="twitter:title"]', t.docTitle);
+    setMeta('meta[name="twitter:description"]', t.metaDesc);
+
+    const select = document.getElementById('language-select');
+    if (select) select.value = code;
+    try { localStorage.setItem('portfolio-language', code); } catch (e) {}
   }
+
   const themes={red:['#ff2a2a','#ff5a3c','rgba(255,42,42,.45)'],violet:['#a855f7','#d8b4fe','rgba(168,85,247,.45)'],blue:['#1746a2','#4f7de0','rgba(23,70,162,.48)'],pink:['#ff5ebc','#ff9bd6','rgba(255,94,188,.45)'],green:['#4ade80','#a3e635','rgba(74,222,128,.4)']};
   function setTheme(name){const c=themes[name]||themes.red;const root=document.documentElement;root.dataset.theme=name;root.style.setProperty('--red',c[0]);root.style.setProperty('--red-2',c[1]);root.style.setProperty('--red-glow',c[2]);root.style.setProperty('--accent-rgb',c[3]||'255,42,42');document.querySelectorAll('.theme-dot').forEach(b=>b.classList.toggle('active',b.dataset.theme===name));try{localStorage.setItem('portfolio-theme',name)}catch(e){}}
   const language=document.getElementById('language-select');
   let savedLang='pt',savedTheme='red';try{savedLang=localStorage.getItem('portfolio-language')||'pt';savedTheme=localStorage.getItem('portfolio-theme')||'red'}catch(e){}
-  if(language){language.value=savedLang;language.addEventListener('change',()=>setLanguage(language.value));}
+  if(language){language.addEventListener('change',()=>setLanguage(language.value));}
   document.querySelectorAll('.theme-dot').forEach(b=>b.addEventListener('click',()=>setTheme(b.dataset.theme)));
   setLanguage(savedLang);setTheme(savedTheme);
 })();
