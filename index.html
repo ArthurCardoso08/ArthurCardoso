@@ -1,1 +1,272 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Arthur Neves Cardoso — desenvolvimento web, interfaces interativas e projetos digitais autorais.">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="googlebot" content="index,follow,max-image-preview:large">
+  <meta name="author" content="Arthur Neves Cardoso">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Arthur Cardoso — Portfólio">
+  <meta property="og:title" content="Arthur Cardoso — DEV">
+  <meta property="og:description" content="Desenvolvimento web, interfaces interativas e projetos digitais autorais.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Arthur Cardoso — Portfólio">
+  <meta name="twitter:description" content="Desenvolvimento web, interfaces interativas e projetos digitais autorais.">
+  <meta name="theme-color" content="#050505">
+  <title>Arthur Cardoso — Portfólio</title>
+  <link rel="icon" type="image/png" href="assets/image-1.webp">
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="loading">
+
+  <!-- Preloader -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader-top"><span>Arthur Cardoso</span><span data-i18n="loaderTop">Portfólio — 2026</span></div>
+    <div class="loader-count"><b class="cnt">000</b><span>%</span></div>
+    <div class="loader-bot"><span data-i18n="loaderBot">Inicializando experiência</span></div>
+    <div class="loader-bar"></div>
+  </div>
+
+  <canvas id="gl" aria-hidden="true"></canvas>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"><span class="lbl" data-i18n="cursorOpen">ABRIR</span></div>
+
+  <div class="hud hud-l" aria-hidden="true">
+    <span class="live"><i></i><span data-i18n="hudOnline">Online</span></span>
+    <span><span data-i18n="hudScroll">Scroll</span> <b class="hud-pct">000</b>%</span>
+  </div>
+  <div class="hud hud-r" aria-hidden="true"><span class="hud-time">--:--</span> · BRT</div>
+
+  <nav class="side-index" aria-label="Índice de seções" data-i18n-attrs="aria-label:sideIndexAria">
+    <a href="#inicio" data-sec="inicio"><span data-i18n="sideHome">Início</span>01</a>
+    <a href="#portfolio" data-sec="portfolio"><span data-i18n="sideProjects">Projetos</span>02</a>
+    <a href="#sobre" data-sec="sobre"><span data-i18n="sideAbout">Sobre</span>03</a>
+    <a href="#contato" data-sec="contato"><span data-i18n="sideContact">Contato</span>04</a>
+  </nav>
+
+  <header class="nav">
+    <a class="brand" href="#inicio" aria-label="Arthur Cardoso — início" data-i18n-attrs="aria-label:ariaHome">
+      <span class="brand-logo" role="img" aria-label="Logo Arthur Cardoso"><i class="lg-a"></i><i class="lg-c"></i></span>
+      <span>Arthur<em>.</em>Cardoso</span>
+    </a>
+    <nav class="navlinks" aria-label="Principal" data-i18n-attrs="aria-label:navMain">
+      <a href="#portfolio"><span data-i18n="navProjects">Projetos</span><sup>01</sup></a>
+      <a href="#sobre"><span data-i18n="navAbout">Sobre</span><sup>02</sup></a>
+    </nav>
+    <div class="site-controls" aria-label="Personalização" data-i18n-attrs="aria-label:ariaCustom">
+      <label class="lang-label" for="language-select">文</label>
+      <select id="language-select" aria-label="Language / Idioma"><option value="pt">PT · Português</option><option value="en">EN · English</option><option value="es">ES · Español</option></select>
+      <div class="theme-picks" role="group" aria-label="Cor do tema" data-i18n-attrs="aria-label:ariaTheme">
+        <button type="button" class="theme-dot active" data-theme="red" data-i18n-attrs="aria-label:themeRed;title:themeRed" aria-label="Vermelho" title="Vermelho"></button>
+        <button type="button" class="theme-dot" data-theme="violet" data-i18n-attrs="aria-label:themeViolet;title:themeViolet" aria-label="Violeta" title="Violeta"></button>
+        <button type="button" class="theme-dot" data-theme="blue" data-i18n-attrs="aria-label:themeBlue;title:themeBlue" aria-label="Azul escuro" title="Azul escuro"></button>
+        <button type="button" class="theme-dot" data-theme="pink" data-i18n-attrs="aria-label:themePink;title:themePink" aria-label="Rosa" title="Rosa"></button><button class="theme-dot" data-theme="green" data-i18n-attrs="aria-label:themeGreen;title:themeGreen" aria-label="Verde" title="Verde"></button>
+      </div>
+    </div>
+    <a class="nav-cta magnetic" href="https://wa.me/5538992188316?text=Olá%20Arthur!%20Vi%20seu%20portfólio%20e%20quero%20conversar%20sobre%20um%20projeto." data-wa-msg="waNav" target="_blank" rel="noopener"><i></i><span data-i18n="navCta">Vamos conversar</span><span class="long">&nbsp;↗</span></a>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="inicio" data-sec>
+      <div class="wrap hero-grid">
+        <div>
+          <span class="status hero-in"><i></i><span data-i18n="available">Disponível para novos projetos</span></span>
+          <h1 class="split-hero">
+            <span class="line-mask"><span data-i18n="heroL1">Ideias que</span></span>
+            <span class="line-mask"><span class="red" data-i18n="heroL2">ganham vida.</span></span>
+            <span class="line-mask"><span class="outline" data-i18n="heroL3">Projetos com</span>
+            <span class="line-mask"><span data-i18n="heroL4">personalidade.</span></span>
+          </h1>
+          <p class="hero-copy hero-in" data-i18n="heroCopy">Eu sou <strong>Arthur Cardoso</strong>, desenvolvedor web. Transformo ideias em experiências digitais com identidade visual, interação e código.</p>
+          <div class="hero-actions hero-in">
+            <a class="btn btn-red magnetic" href="#portfolio"><span data-i18n="viewProjects">Ver portfólio</span> <span class="arr">↓</span></a>
+            <a class="btn btn-ghost magnetic" href="https://wa.me/5538992188316?text=Olá%20Arthur!%20Quero%20criar%20uma%20landing%20page." data-wa-msg="waHero" target="_blank" rel="noopener"><span data-i18n="contact">Entrar em contato</span> <span class="arr">↗</span></a>
+          </div>
+          <div class="hero-meta hero-in">
+            <div><b data-i18n="metaA1">Web</b><span data-i18n="metaA2">Desenvolvimento</span></div>
+            <div><b data-i18n="metaB1">UI</b><span data-i18n="metaB2">Design de interface</span></div>
+            <div><b data-i18n="metaC1">Meu</b><span data-i18n="metaC2">Estilo próprio</span></div>
+          </div>
+        </div>
+
+        <div class="portrait hero-in-r">
+          <div class="orbit" aria-hidden="true"></div>
+          <div class="chip chip-1"><b data-i18n="chipOnline">✦ Online</b><span data-i18n="chipReply">Respondo em poucas horas</span></div>
+          <div class="portrait-card" data-tilt>
+            <img src="https://i.ibb.co/mVN6Lk4H/Captura-de-tela-2026-08-27-102149.jpg" alt="Retrato de Arthur Neves Cardoso" data-i18n-attrs="alt:imgPortrait" width="430" height="560" loading="eager" fetchpriority="high" decoding="async">
+            <div class="scan" aria-hidden="true"></div>
+            <i class="corner c-tl"></i><i class="corner c-tr"></i><i class="corner c-bl"></i><i class="corner c-br"></i>
+            <div class="p-label">ID // 038-MOC<b>Arthur N. Cardoso</b></div>
+          </div>
+          <div class="chip chip-2"><b data-i18n="chip2Title">Web developer</b><span data-i18n="chip2Text">Design · Interação · Código</span></div>
+        </div>
+      </div>
+      <div class="scroll-cue" aria-hidden="true"><span data-i18n="scrollCue">ROLE</span><span></span></div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-item">
+          <span data-i18n="mq1">Desenvolvimento web</span><svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
+          <span class="outline" data-i18n="mq2">Criatividade</span><svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
+          <span data-i18n="mq3">Experiências digitais</span><svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
+          <span class="outline" data-i18n="mq4">Código</span><svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
+        </div>
+      </div>
+    </div>
+<!-- PORTFOLIO (horizontal) -->
+    <section class="work" id="portfolio" data-sec>
+      <div class="work-pin">
+        <div class="work-track">
+          <div class="work-intro">
+            <div>
+              <span class="tag"><b>01</b> <span data-i18n="projectsLabel">Projetos selecionados</span></span>
+              <h2 data-i18n="projectsTitle">Projetos que <span class="red">ganham vida.</span></h2>
+              <p data-i18n="projectsIntro">Uma seleção de experiências digitais que desenvolvi.</p>
+            </div>
+            <div class="hint"><span></span><span data-i18n="hint">Continue rolando</span></div>
+          </div>
+
+          <article class="project" data-cursor-i18n="cursorView">
+            <div class="bg art-1"><div class="sausage"></div></div>
+            <div class="project-top"><span class="p-num">01 / 02</span><span class="p-tag live">● <span data-i18n="liveTag">No ar</span></span></div>
+            <div>
+              <h3>Bola Hot-Dog</h3>
+              <p data-i18n="hotdogDesc">Cardápio digital com pedidos integrados ao WhatsApp e experiência simples para o cliente.</p>
+              <div class="p-stack"><span>Delivery</span><span data-i18n="stackMenu">Cardápio</span><span>WhatsApp</span></div>
+              <a class="btn btn-ghost magnetic" href="https://bolahotdog.vercel.app/" target="_blank" rel="noopener"><span data-i18n="visitSite">Visitar site</span> <span class="arr">↗</span></a>
+            </div>
+          </article>
+
+           <article class="project" data-cursor-i18n="cursorView">
+            <div class="bg art-pizza"><div class="sausage"></div></div>
+            <div class="project-top"><span class="p-num">02 / 02</span><span class="p-tag live">● <span data-i18n="liveTag">No ar</span></span></div>
+            <div>
+              <h3>DF-pizzaria</h3>
+              <p data-i18n="pizzaDesc">Site de delivery para pizzas, lanches e bebidas, com navegação direta e pedidos pelo WhatsApp.</p>
+              <div class="p-stack"><span>Delivery</span><span data-i18n="stackMenu">Cardápio</span><span>WhatsApp</span></div>
+              <a class="btn btn-ghost magnetic" href="https://dfpizzaria.vercel.app/" target="_blank" rel="noopener"><span data-i18n="visitSite">Visitar site</span> <span class="arr">↗</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+<!-- ABOUT -->
+    <section class="about" id="sobre" data-sec>
+      <div class="wrap about-grid">
+        <div>
+          <span class="tag"><b>04</b> <span data-i18n="aboutTag">Sobre mim</span></span>
+          <div class="about-big split"><span class="line-mask"><span data-i18n="aboutBig1">Eu desenvolvo</span></span><span class="line-mask"><span class="outline" data-i18n="aboutBig2">experiências</span></span><span class="line-mask"><span class="red" data-i18n="aboutBig3">digitais.</span></span></div>
+        </div>
+        <div class="about-card reveal">
+          <p data-i18n="aboutIntro">Sou <strong>Arthur Neves Cardoso</strong>, desenvolvedor web.</p>
+          <p data-i18n="aboutCopy">Gosto de unir design, código e animações para transformar ideias em experiências digitais funcionais e visualmente marcantes.</p>
+          <div class="stats">
+            <div class="stat"><b><span class="count" data-to=""></span><em>100%</em></b><span data-i18n="statResp">Responsivo</span></div>
+            <div class="stat"><b><em></em><span class="count" data-to="">0</span>2/3s</b><span data-i18n="statLoad">Para carregar</span></div>
+            <div class="stat"><b><span class="count" data-to=""></span><em data-i18n="statYour">SUA</em></b><span data-i18n="statSell">Página vendendo</span></div>
+          </div>
+          <div class="skills"><span>HTML &amp; CSS</span><span>JavaScript</span><span>UI Design</span><span data-i18n="skillAnim">Animações</span><span>SEO</span><span>UX/UI</span><span data-i18n="skillAI">IA</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contato" data-sec>
+      <div class="cta-ring" aria-hidden="true"></div>
+      <span class="tag"><b>05</b> <span data-i18n="ctaTag">Seu próximo projeto</span></span>
+      <div class="cta-giant" aria-hidden="true" style="margin-top:34px"><span class="outline" data-i18n="ctaG1">Vamos</span> <span class="red" data-i18n="ctaG2">criar.</span></div>
+      <h2 class="sr-only" data-i18n="ctaSr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Vamos criar</h2>
+      <div class="wrap">
+        <p class="reveal" data-i18n="contactCopy">Tem uma ideia ou projeto em mente? Vamos conversar e tirar do papel.</p>
+        <div class="cta-actions reveal">
+          <a class="btn btn-red magnetic" href="https://wa.me/5538992188316?text=Olá%20Arthur!%20Quero%20conversar%20sobre%20um%20projeto%20web." data-wa-msg="waCta" target="_blank" rel="noopener"><span data-i18n="contactButton">Falar sobre um projeto</span> <span class="arr">↗</span></a>
+          <a class="btn btn-ghost magnetic" href="https://www.instagram.com/arthurcardoso_08_/" target="_blank" rel="noopener"><span data-i18n="instagram">Ver Instagram</span> <span class="arr">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div>
+          <a class="brand" href="#inicio">
+            <span class="brand-logo" role="img" aria-label="Logo Arthur Cardoso"><i class="lg-a"></i><i class="lg-c"></i></span>
+            <span>Arthur<em>.</em>Cardoso</span>
+          </a>
+          <p data-i18n="footerCopy">Desenvolvimento web · Design de interface · Interações.</p>
+        </div>
+        <div>
+          <h4 data-i18n="footContact">Contato</h4>
+          <div class="foot-links contact-socials" aria-label="Redes sociais" data-i18n-attrs="aria-label:ariaSocial">
+            <a class="social-ic" href="https://wa.me/5538992188316" target="_blank" rel="noopener" style="--c:#25d366" aria-label="WhatsApp" title="WhatsApp">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.65-4.8A9 9 0 1 1 8 19.4L3 21z"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg>
+            </a>
+            <a class="social-ic" href="https://www.instagram.com/arthurcardoso_08_/" target="_blank" rel="noopener" style="--c:#e1306c" aria-label="Instagram" title="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></svg>
+            </a>
+            <a class="social-ic" href="https://discord.com/users/1348840214373728267" target="_blank" rel="noopener noreferrer" style="--c:#5865F2" aria-label="Discord" title="Discord">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"> <path d="M19.54 5.02A18.8 18.8 0 0 0 14.9 3.6l-.58 1.18a17.4 17.4 0 0 0-4.64 0L9.1 3.6a18.8 18.8 0 0 0-4.64 1.42C1.52 9.36.72 13.6 1.12 17.78a18.9 18.9 0 0 0 5.7 2.88l1.23-2.02a12.3 12.3 0 0 1-1.94-.94l.47-.36a13.5 13.5 0 0 0 11.84 0l.47.36a12.3 12.3 0 0 1-1.94.94l1.23 2.02a18.9 18.9 0 0 0 5.7-2.88c.48-4.85-.82-9.05-4.34-12.76ZM8.5 14.98c-1.14 0-2.08-1.04-2.08-2.32s.92-2.32 2.08-2.32 2.1 1.05 2.08 2.32c0 1.28-.92 2.32-2.08 2.32Zm7 0c-1.14 0-2.08-1.04-2.08-2.32s.92-2.32 2.08-2.32 2.1 1.05 2.08 2.32c0 1.28-.92 2.32-2.08 2.32Z"/> </svg>
+            </a>
+            <a class="social-ic" href="https://github.com/ArthurCardoso08" target="_blank" rel="noopener" style="--c:#f3f1ee" aria-label="GitHub" title="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.51-1.3-1.24-1.65-1.24-1.65-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 .1.76 2.02 3.37 1.54.1-.72.39-1.21.7-1.49-2.47-.28-5.07-1.24-5.07-5.5 0-1.21.43-2.2 1.15-2.98-.12-.28-.5-1.42.11-2.95 0 0 .94-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.11-1.44 3.05-1.14 3.05-1.14.61 1.53.23 2.67.11 2.95.72.78 1.15 1.77 1.15 2.98 0 4.27-2.61 5.22-5.1 5.49.4.35.75 1.02.75 2.06v3.05c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9z"/></svg>
+            </a>
+            <a class="social-ic linkedin-link" href="https://www.linkedin.com/in/arthur-n-cardoso-0b4367403/" target="_blank" rel="noopener" style="--c:#0a66c2" aria-label="LinkedIn" title="LinkedIn — adicione seu perfil">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 2H3.55C2.69 2 2 2.68 2 3.53v16.94c0 .85.69 1.53 1.55 1.53h16.9c.86 0 1.55-.68 1.55-1.53V3.53C22 2.68 21.31 2 20.45 2ZM8 18.5H5V9h3v9.5ZM6.5 7.7a1.75 1.75 0 1 1 0-3.5 1.75 1.75 0 0 1 0 3.5ZM19 18.5h-3v-4.62c0-1.1-.02-2.52-1.54-2.52-1.54 0-1.78 1.2-1.78 2.44v4.7h-3V9h2.88v1.3h.04c.4-.75 1.38-1.54 2.84-1.54 3.04 0 3.6 2 3.6 4.6v5.14Z"/></svg>
+            </a>
+          </div>
+        <div>
+          <h4 data-i18n="footNav">Navegação</h4>
+          <div class="foot-links">
+            <a href="#servicos" data-i18n="footServices">Serviços</a>
+            <a href="#portfolio" data-i18n="footPortfolio">Portfólio</a>
+            <a href="#processo" data-i18n="footProcess">Processo</a>
+          </div>
+        </div>
+      </div>
+      <div class="foot-icons">
+        <div class="ic-group" aria-label="Tecnologias" data-i18n-attrs="aria-label:ariaTech">
+          <span class="tech-ic" title="HTML"><img src="assets/image-4.webp" alt="HTML5"><small>HTML</small></span>
+          <span class="tech-ic" title="CSS"><img src="assets/image-5.webp" alt="CSS3"><small>CSS</small></span>
+          <span class="tech-ic" title="JavaScript"><img src="assets/image-6.webp" alt="JavaScript"><small>JavaScript</small></span>
+           <span class="tech-ic" title="Vercel"><img src="assets/image-7.jpg" alt="Vercel"><small>Vercel</small></span>
+        </div>
+      <div class="foot-bottom">
+        <span data-i18n="footCopy">© 2026 Arthur Neves Cardoso. Todos os direitos reservados.</span>
+        <a href="privacidade.html" rel="nofollow" data-i18n="footPrivacy">Política de Privacidade</a>
+      </div>
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+  
+
+
+
+
+
+<script src="app.js"></script>
+</body>
+</html>
