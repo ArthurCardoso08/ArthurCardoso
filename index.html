@@ -31,9 +31,9 @@
 
   <!-- Preloader -->
   <div class="loader" aria-hidden="true">
-    <div class="loader-top"><span>Arthur Cardoso</span><span>Portfólio — 2026</span></div>
+    <div class="loader-top"><span>Arthur Cardoso</span><span data-i18n="loaderTop">Portfólio — 2026</span></div>
     <div class="loader-count"><b class="cnt">000</b><span>%</span></div>
-    <div class="loader-bot"><span>Inicializando experiência</span></div>
+    <div class="loader-bot"><span data-i18n="loaderBot">Inicializando experiência</span></div>
     <div class="loader-bar"></div>
   </div>
 
@@ -43,41 +43,41 @@
   <div class="noise" aria-hidden="true"></div>
   <div class="progress" aria-hidden="true"></div>
   <div class="cursor" aria-hidden="true"></div>
-  <div class="cursor-ring" aria-hidden="true"><span class="lbl">ABRIR</span></div>
+  <div class="cursor-ring" aria-hidden="true"><span class="lbl" data-i18n="cursorOpen">ABRIR</span></div>
 
   <div class="hud hud-l" aria-hidden="true">
-    <span class="live"><i></i>Online</span>
-    <span>Scroll <b class="hud-pct">000</b>%</span>
+    <span class="live"><i></i><span data-i18n="hudOnline">Online</span></span>
+    <span><span data-i18n="hudScroll">Scroll</span> <b class="hud-pct">000</b>%</span>
   </div>
   <div class="hud hud-r" aria-hidden="true"><span class="hud-time">--:--</span> · BRT</div>
 
-  <nav class="side-index" aria-label="Índice de seções">
-    <a href="#inicio" data-sec="inicio"><span>Início</span>01</a>
-    <a href="#portfolio" data-sec="portfolio"><span>Projetos</span>02</a>
-    <a href="#sobre" data-sec="sobre"><span>Sobre</span>03</a>
-    <a href="#contato" data-sec="contato"><span>Contato</span>04</a>
+  <nav class="side-index" aria-label="Índice de seções" data-i18n-attrs="aria-label:sideIndexAria">
+    <a href="#inicio" data-sec="inicio"><span data-i18n="sideHome">Início</span>01</a>
+    <a href="#portfolio" data-sec="portfolio"><span data-i18n="sideProjects">Projetos</span>02</a>
+    <a href="#sobre" data-sec="sobre"><span data-i18n="sideAbout">Sobre</span>03</a>
+    <a href="#contato" data-sec="contato"><span data-i18n="sideContact">Contato</span>04</a>
   </nav>
 
   <header class="nav">
-    <a class="brand" href="#inicio" aria-label="Arthur Cardoso — início">
+    <a class="brand" href="#inicio" aria-label="Arthur Cardoso — início" data-i18n-attrs="aria-label:ariaHome">
       <img class="brand-logo" src="assets/arthur-cardoso-logo.png" alt="Logo Arthur Cardoso">
       <span>Arthur<em>.</em>Cardoso</span>
     </a>
-    <nav class="navlinks" aria-label="Principal">
-      <a href="#portfolio" data-i18n="navProjects">Projetos<sup>01</sup></a>
-      <a href="#sobre" data-i18n="navAbout">Sobre<sup>02</sup></a>
+    <nav class="navlinks" aria-label="Principal" data-i18n-attrs="aria-label:navMain">
+      <a href="#portfolio"><span data-i18n="navProjects">Projetos</span><sup>01</sup></a>
+      <a href="#sobre"><span data-i18n="navAbout">Sobre</span><sup>02</sup></a>
     </nav>
-    <div class="site-controls" aria-label="Personalização">
+    <div class="site-controls" aria-label="Personalização" data-i18n-attrs="aria-label:ariaCustom">
       <label class="lang-label" for="language-select">文</label>
       <select id="language-select" aria-label="Language / Idioma"><option value="pt">PT · Português</option><option value="en">EN · English</option><option value="es">ES · Español</option></select>
-      <div class="theme-picks" role="group" aria-label="Cor do tema">
-        <button type="button" class="theme-dot active" data-theme="red" aria-label="Vermelho" title="Vermelho"></button>
-        <button type="button" class="theme-dot" data-theme="violet" aria-label="Violeta" title="Violeta"></button>
-        <button type="button" class="theme-dot" data-theme="blue" aria-label="Azul escuro" title="Azul escuro"></button>
-        <button type="button" class="theme-dot" data-theme="pink" aria-label="Rosa" title="Rosa"></button><button class="theme-dot" data-theme="green" aria-label="Verde" title="Verde"></button>
+      <div class="theme-picks" role="group" aria-label="Cor do tema" data-i18n-attrs="aria-label:ariaTheme">
+        <button type="button" class="theme-dot active" data-theme="red" data-i18n-attrs="aria-label:themeRed;title:themeRed" aria-label="Vermelho" title="Vermelho"></button>
+        <button type="button" class="theme-dot" data-theme="violet" data-i18n-attrs="aria-label:themeViolet;title:themeViolet" aria-label="Violeta" title="Violeta"></button>
+        <button type="button" class="theme-dot" data-theme="blue" data-i18n-attrs="aria-label:themeBlue;title:themeBlue" aria-label="Azul escuro" title="Azul escuro"></button>
+        <button type="button" class="theme-dot" data-theme="pink" data-i18n-attrs="aria-label:themePink;title:themePink" aria-label="Rosa" title="Rosa"></button><button class="theme-dot" data-theme="green" data-i18n-attrs="aria-label:themeGreen;title:themeGreen" aria-label="Verde" title="Verde"></button>
       </div>
     </div>
-    <a class="nav-cta magnetic" href="https://wa.me/5538992188316?text=Olá%20Arthur!%20Vi%20seu%20portfólio%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener"><i></i>Vamos conversar<span class="long">&nbsp;↗</span></a>
+    <a class="nav-cta magnetic" href="https://wa.me/5538992188316?text=Olá%20Arthur!%20Vi%20seu%20portfólio%20e%20quero%20conversar%20sobre%20um%20projeto." data-wa-msg="waNav" target="_blank" rel="noopener"><i></i><span data-i18n="navCta">Vamos conversar</span><span class="long">&nbsp;↗</span></a>
   </header>
 
   <main>
@@ -85,48 +85,48 @@
     <section class="hero" id="inicio" data-sec>
       <div class="wrap hero-grid">
         <div>
-          <span class="status hero-in"><i></i>Disponível para novos projetos</span>
+          <span class="status hero-in"><i></i><span data-i18n="available">Disponível para novos projetos</span></span>
           <h1 class="split-hero">
-            <span class="line-mask"><span>Ideias que</span></span>
-            <span class="line-mask"><span class="red">ganham vida.</span></span>
-            <span class="line-mask"><span class="outline">Projetos com</span>
-            <span class="line-mask"><span>personalidade.</span></span>
+            <span class="line-mask"><span data-i18n="heroL1">Ideias que</span></span>
+            <span class="line-mask"><span class="red" data-i18n="heroL2">ganham vida.</span></span>
+            <span class="line-mask"><span class="outline" data-i18n="heroL3">Projetos com</span>
+            <span class="line-mask"><span data-i18n="heroL4">personalidade.</span></span>
           </h1>
-          <p class="hero-copy hero-in">Eu sou <strong>Arthur Cardoso</strong>, desenvolvedor web. Transformo ideias em experiências digitais com identidade visual, interação e código.</p>
+          <p class="hero-copy hero-in" data-i18n="heroCopy">Eu sou <strong>Arthur Cardoso</strong>, desenvolvedor web. Transformo ideias em experiências digitais com identidade visual, interação e código.</p>
           <div class="hero-actions hero-in">
-            <a class="btn btn-red magnetic" href="#portfolio">Ver portfólio <span class="arr">↓</span></a>
-            <a class="btn btn-ghost magnetic" href="https://wa.me/5538992188316?text=Olá%20Arthur!%20Quero%20criar%20uma%20landing%20page." target="_blank" rel="noopener">Entrar em contato <span class="arr">↗</span></a>
+            <a class="btn btn-red magnetic" href="#portfolio"><span data-i18n="viewProjects">Ver portfólio</span> <span class="arr">↓</span></a>
+            <a class="btn btn-ghost magnetic" href="https://wa.me/5538992188316?text=Olá%20Arthur!%20Quero%20criar%20uma%20landing%20page." data-wa-msg="waHero" target="_blank" rel="noopener"><span data-i18n="contact">Entrar em contato</span> <span class="arr">↗</span></a>
           </div>
           <div class="hero-meta hero-in">
-            <div><b>Web</b>Desenvolvimento</div>
-            <div><b>UI</b>Design de interface</div>
-            <div><b>Meu</b>Estilo próprio</div>
+            <div><b data-i18n="metaA1">Web</b><span data-i18n="metaA2">Desenvolvimento</span></div>
+            <div><b data-i18n="metaB1">UI</b><span data-i18n="metaB2">Design de interface</span></div>
+            <div><b data-i18n="metaC1">Meu</b><span data-i18n="metaC2">Estilo próprio</span></div>
           </div>
         </div>
 
         <div class="portrait hero-in-r">
           <div class="orbit" aria-hidden="true"></div>
-          <div class="chip chip-1"><b>✦ Online</b>Respondo em poucas horas</div>
+          <div class="chip chip-1"><b data-i18n="chipOnline">✦ Online</b><span data-i18n="chipReply">Respondo em poucas horas</span></div>
           <div class="portrait-card" data-tilt>
-            <img src="https://i.ibb.co/mVN6Lk4H/Captura-de-tela-2026-08-27-102149.jpg" alt="Retrato de Arthur Neves Cardoso" width="430" height="560" loading="eager" fetchpriority="high" decoding="async">
+            <img src="https://i.ibb.co/mVN6Lk4H/Captura-de-tela-2026-08-27-102149.jpg" alt="Retrato de Arthur Neves Cardoso" data-i18n-attrs="alt:imgPortrait" width="430" height="560" loading="eager" fetchpriority="high" decoding="async">
             <div class="scan" aria-hidden="true"></div>
             <i class="corner c-tl"></i><i class="corner c-tr"></i><i class="corner c-bl"></i><i class="corner c-br"></i>
             <div class="p-label">ID // 038-MOC<b>Arthur N. Cardoso</b></div>
           </div>
-          <div class="chip chip-2"><b>Web developer</b>Design · Interação · Código</div>
+          <div class="chip chip-2"><b data-i18n="chip2Title">Web developer</b><span data-i18n="chip2Text">Design · Interação · Código</span></div>
         </div>
       </div>
-      <div class="scroll-cue" aria-hidden="true">ROLE<span></span></div>
+      <div class="scroll-cue" aria-hidden="true"><span data-i18n="scrollCue">ROLE</span><span></span></div>
     </section>
 
     <!-- MARQUEE -->
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
         <div class="marquee-item">
-          <span>Desenvolvimento web</span><svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
-          <span class="outline">Criatividade</span><svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
-          <span>Experiências digitais</span><svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
-          <span class="outline">Código</span><svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
+          <span data-i18n="mq1">Desenvolvimento web</span><svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
+          <span class="outline" data-i18n="mq2">Criatividade</span><svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
+          <span data-i18n="mq3">Experiências digitais</span><svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
+          <span class="outline" data-i18n="mq4">Código</span><svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
         </div>
       </div>
     </div>
@@ -137,30 +137,30 @@
           <div class="work-intro">
             <div>
               <span class="tag"><b>01</b> <span data-i18n="projectsLabel">Projetos selecionados</span></span>
-              <h2>Projetos que <span class="red">ganham vida.</span></h2>
-              <p>Uma seleção de experiências digitais que desenvolvi.</p>
+              <h2 data-i18n="projectsTitle">Projetos que <span class="red">ganham vida.</span></h2>
+              <p data-i18n="projectsIntro">Uma seleção de experiências digitais que desenvolvi.</p>
             </div>
-            <div class="hint"><span></span>Continue rolando</div>
+            <div class="hint"><span></span><span data-i18n="hint">Continue rolando</span></div>
           </div>
 
-          <article class="project" data-cursor="VER">
+          <article class="project" data-cursor-i18n="cursorView">
             <div class="bg art-1"><div class="sausage"></div></div>
-            <div class="project-top"><span class="p-num">01 / 02</span><span class="p-tag live">● No ar</span></div>
+            <div class="project-top"><span class="p-num">01 / 02</span><span class="p-tag live">● <span data-i18n="liveTag">No ar</span></span></div>
             <div>
               <h3>Bola Hot-Dog</h3>
-              <p>Cardápio digital com pedidos integrados ao WhatsApp e experiência simples para o cliente.</p>
-              <div class="p-stack"><span>Delivery</span><span>Cardápio</span><span>WhatsApp</span></div>
+              <p data-i18n="hotdogDesc">Cardápio digital com pedidos integrados ao WhatsApp e experiência simples para o cliente.</p>
+              <div class="p-stack"><span>Delivery</span><span data-i18n="stackMenu">Cardápio</span><span>WhatsApp</span></div>
               <a class="btn btn-ghost magnetic" href="https://bolahotdog.vercel.app/" target="_blank" rel="noopener"><span data-i18n="visitSite">Visitar site</span> <span class="arr">↗</span></a>
             </div>
           </article>
 
-           <article class="project" data-cursor="VER">
+           <article class="project" data-cursor-i18n="cursorView">
             <div class="bg art-pizza"><div class="sausage"></div></div>
-            <div class="project-top"><span class="p-num">02 / 02</span><span class="p-tag live">● No ar</span></div>
+            <div class="project-top"><span class="p-num">02 / 02</span><span class="p-tag live">● <span data-i18n="liveTag">No ar</span></span></div>
             <div>
               <h3>DF-pizzaria</h3>
-              <p>Site de delivery para pizzas, lanches e bebidas, com navegação direta e pedidos pelo WhatsApp.</p>
-              <div class="p-stack"><span>Delivery</span><span>Cardápio</span><span>WhatsApp</span></div>
+              <p data-i18n="pizzaDesc">Site de delivery para pizzas, lanches e bebidas, com navegação direta e pedidos pelo WhatsApp.</p>
+              <div class="p-stack"><span>Delivery</span><span data-i18n="stackMenu">Cardápio</span><span>WhatsApp</span></div>
               <a class="btn btn-ghost magnetic" href="https://dfpizzaria.vercel.app/" target="_blank" rel="noopener"><span data-i18n="visitSite">Visitar site</span> <span class="arr">↗</span></a>
             </div>
           </article>
@@ -171,18 +171,18 @@
     <section class="about" id="sobre" data-sec>
       <div class="wrap about-grid">
         <div>
-          <span class="tag"><b>04</b> Sobre mim</span>
-          <div class="about-big split"><span class="line-mask"><span>Eu desenvolvo</span></span><span class="line-mask"><span class="outline">experiências</span></span><span class="line-mask"><span class="red">digitais.</span></span></div>
+          <span class="tag"><b>04</b> <span data-i18n="aboutTag">Sobre mim</span></span>
+          <div class="about-big split"><span class="line-mask"><span data-i18n="aboutBig1">Eu desenvolvo</span></span><span class="line-mask"><span class="outline" data-i18n="aboutBig2">experiências</span></span><span class="line-mask"><span class="red" data-i18n="aboutBig3">digitais.</span></span></div>
         </div>
         <div class="about-card reveal">
-          <p>Sou <strong>Arthur Neves Cardoso</strong>, desenvolvedor web.</p>
-          <p>Gosto de unir design, código e animações para transformar ideias em experiências digitais funcionais e visualmente marcantes.</p>
+          <p data-i18n="aboutIntro">Sou <strong>Arthur Neves Cardoso</strong>, desenvolvedor web.</p>
+          <p data-i18n="aboutCopy">Gosto de unir design, código e animações para transformar ideias em experiências digitais funcionais e visualmente marcantes.</p>
           <div class="stats">
-            <div class="stat"><b><span class="count" data-to=""></span><em>100%</em></b><span>Responsivo</span></div>
-            <div class="stat"><b><em></em><span class="count" data-to="">0</span>2/3s</b><span>Para carregar</span></div>
-            <div class="stat"><b><span class="count" data-to=""></span><em>SUA</em></b><span>Página vendendo</span></div>
+            <div class="stat"><b><span class="count" data-to=""></span><em>100%</em></b><span data-i18n="statResp">Responsivo</span></div>
+            <div class="stat"><b><em></em><span class="count" data-to="">0</span>2/3s</b><span data-i18n="statLoad">Para carregar</span></div>
+            <div class="stat"><b><span class="count" data-to=""></span><em data-i18n="statYour">SUA</em></b><span data-i18n="statSell">Página vendendo</span></div>
           </div>
-          <div class="skills"><span>HTML &amp; CSS</span><span>JavaScript</span><span>UI Design</span><span>Animações</span><span>SEO</span><span>UX/UI</span><span>IA</span></div>
+          <div class="skills"><span>HTML &amp; CSS</span><span>JavaScript</span><span>UI Design</span><span data-i18n="skillAnim">Animações</span><span>SEO</span><span>UX/UI</span><span data-i18n="skillAI">IA</span></div>
         </div>
       </div>
     </section>
@@ -190,14 +190,14 @@
     <!-- CTA -->
     <section class="cta" id="contato" data-sec>
       <div class="cta-ring" aria-hidden="true"></div>
-      <span class="tag"><b>05</b> Seu próximo projeto</span>
-      <div class="cta-giant" aria-hidden="true" style="margin-top:34px"><span class="outline">Vamos</span> <span class="red">criar.</span></div>
-      <h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Vamos criar</h2>
+      <span class="tag"><b>05</b> <span data-i18n="ctaTag">Seu próximo projeto</span></span>
+      <div class="cta-giant" aria-hidden="true" style="margin-top:34px"><span class="outline" data-i18n="ctaG1">Vamos</span> <span class="red" data-i18n="ctaG2">criar.</span></div>
+      <h2 class="sr-only" data-i18n="ctaSr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Vamos criar</h2>
       <div class="wrap">
-        <p class="reveal">Tem uma ideia ou projeto em mente? Vamos conversar e tirar do papel.</p>
+        <p class="reveal" data-i18n="contactCopy">Tem uma ideia ou projeto em mente? Vamos conversar e tirar do papel.</p>
         <div class="cta-actions reveal">
-          <a class="btn btn-red magnetic" href="https://wa.me/5538992188316?text=Olá%20Arthur!%20Quero%20conversar%20sobre%20um%20projeto%20web." target="_blank" rel="noopener">Falar sobre um projeto <span class="arr">↗</span></a>
-          <a class="btn btn-ghost magnetic" href="https://www.instagram.com/arthurcardoso_08_/" target="_blank" rel="noopener">Ver Instagram <span class="arr">↗</span></a>
+          <a class="btn btn-red magnetic" href="https://wa.me/5538992188316?text=Olá%20Arthur!%20Quero%20conversar%20sobre%20um%20projeto%20web." data-wa-msg="waCta" target="_blank" rel="noopener"><span data-i18n="contactButton">Falar sobre um projeto</span> <span class="arr">↗</span></a>
+          <a class="btn btn-ghost magnetic" href="https://www.instagram.com/arthurcardoso_08_/" target="_blank" rel="noopener"><span data-i18n="instagram">Ver Instagram</span> <span class="arr">↗</span></a>
         </div>
       </div>
     </section>
@@ -211,11 +211,11 @@
             <img class="brand-logo" src="assets/arthur-cardoso-logo.png" alt="Logo Arthur Cardoso">
             <span>Arthur<em>.</em>Cardoso</span>
           </a>
-          <p>Desenvolvimento web · Design de interface · Interações.</p>
+          <p data-i18n="footerCopy">Desenvolvimento web · Design de interface · Interações.</p>
         </div>
         <div>
-          <h4>Contato</h4>
-          <div class="foot-links contact-socials" aria-label="Redes sociais">
+          <h4 data-i18n="footContact">Contato</h4>
+          <div class="foot-links contact-socials" aria-label="Redes sociais" data-i18n-attrs="aria-label:ariaSocial">
             <a class="social-ic" href="https://wa.me/5538992188316" target="_blank" rel="noopener" style="--c:#25d366" aria-label="WhatsApp" title="WhatsApp">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.65-4.8A9 9 0 1 1 8 19.4L3 21z"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg>
             </a>
@@ -233,24 +233,24 @@
             </a>
           </div>
         <div>
-          <h4>Navegação</h4>
+          <h4 data-i18n="footNav">Navegação</h4>
           <div class="foot-links">
-            <a href="#servicos">Serviços</a>
-            <a href="#portfolio">Portfólio</a>
-            <a href="#processo">Processo</a>
+            <a href="#servicos" data-i18n="footServices">Serviços</a>
+            <a href="#portfolio" data-i18n="footPortfolio">Portfólio</a>
+            <a href="#processo" data-i18n="footProcess">Processo</a>
           </div>
         </div>
       </div>
       <div class="foot-icons">
-        <div class="ic-group" aria-label="Tecnologias">
+        <div class="ic-group" aria-label="Tecnologias" data-i18n-attrs="aria-label:ariaTech">
           <span class="tech-ic" title="HTML"><img src="assets/image-4.webp" alt="HTML5"><small>HTML</small></span>
           <span class="tech-ic" title="CSS"><img src="assets/image-5.webp" alt="CSS3"><small>CSS</small></span>
           <span class="tech-ic" title="JavaScript"><img src="assets/image-6.webp" alt="JavaScript"><small>JavaScript</small></span>
            <span class="tech-ic" title="Vercel"><img src="assets/image-7.jpg" alt="Vercel"><small>Vercel</small></span>
         </div>
       <div class="foot-bottom">
-        <span>© 2026 Arthur Neves Cardoso. Todos os direitos reservados.</span>
-        <a href="privacidade.html" rel="nofollow">Política de Privacidade</a>
+        <span data-i18n="footCopy">© 2026 Arthur Neves Cardoso. Todos os direitos reservados.</span>
+        <a href="privacidade.html" rel="nofollow" data-i18n="footPrivacy">Política de Privacidade</a>
       </div>
     </div>
   </footer>
