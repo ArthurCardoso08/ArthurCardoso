@@ -199,6 +199,57 @@
           <a class="btn btn-red magnetic" href="https://wa.me/5538992188316?text=Olá%20Arthur!%20Quero%20conversar%20sobre%20um%20projeto%20web." data-wa-msg="waCta" target="_blank" rel="noopener"><span data-i18n="contactButton">Falar sobre um projeto</span> <span class="arr">↗</span></a>
           <a class="btn btn-ghost magnetic" href="https://www.instagram.com/arthurcardoso_08_/" target="_blank" rel="noopener"><span data-i18n="instagram">Ver Instagram</span> <span class="arr">↗</span></a>
         </div>
+                <div class="quote-toggle-wrap">
+              <button type="button" class="landing-info-toggle quote-toggle" id="quote-toggle" aria-expanded="false" aria-controls="quote-form">
+                <span class="q-toggle-txt"><span data-q="toggle">Pedir um orçamento</span><small data-q="toggleSub">Preencha em 30 segundos</small></span>
+                <span class="toggle-icon" aria-hidden="true">+</span>
+              </button>
+            </div>
+            <form class="quote" id="quote-form" novalidate hidden>
+            <div class="quote-head">
+              <span class="tag"><b>+</b> <span data-q="title">Orçamento rápido</span></span>
+              <h3 data-q="heading">Conte sobre o seu projeto.</h3>
+              <p data-q="sub">Preencha os campos e a mensagem chega direto no meu WhatsApp, já organizada.</p>
+            </div>
+            <div class="quote-grid">
+              <label class="q-field"><span data-q="lName">Seu nome</span><input type="text" name="name" autocomplete="name" maxlength="80"></label>
+              <label class="q-field"><span data-q="lType">Tipo de projeto</span>
+                <select name="type">
+                  <option value="" data-q="pick">Selecione uma opção</option>
+                  <option value="institucional" data-q="optInst">Site institucional</option>
+                  <option value="landing" data-q="optLanding">Landing page</option>
+                  <option value="cardapio" data-q="optMenu">Cardápio digital</option>
+                  <option value="sistema" data-q="optSystem">Sistema ou automação</option>
+                  <option value="outro" data-q="optOther">Outro</option>
+                </select>
+              </label>
+              <label class="q-field"><span data-q="lDeadline">Prazo</span>
+                <select name="deadline">
+                  <option value="" data-q="pick">Selecione uma opção</option>
+                  <option value="urgente" data-q="dlUrgent">Urgente (até 2 semanas)</option>
+                  <option value="1-2meses" data-q="dlMonth">Entre 1 e 2 meses</option>
+                  <option value="sem-pressa" data-q="dlFlex">Sem pressa</option>
+                  <option value="indefinido" data-q="dlUnsure">Ainda não sei</option>
+                </select>
+              </label>
+              <label class="q-field"><span data-q="lBudget">Orçamento aproximado</span>
+                <select name="budget">
+                  <option value="" data-q="pick">Selecione uma opção</option>
+                  <option value="ate-1k" data-q="bgLow">Até R$ 1.000</option>
+                  <option value="1k-3k" data-q="bgMid">R$ 1.000 a R$ 3.000</option>
+                  <option value="3k-8k" data-q="bgHigh">R$ 3.000 a R$ 8.000</option>
+                  <option value="acima-8k" data-q="bgTop">Acima de R$ 8.000</option>
+                  <option value="indefinido" data-q="bgUnsure">Ainda não sei</option>
+                </select>
+              </label>
+              <label class="q-field q-wide"><span data-q="lDesc">Conte mais (opcional)</span><textarea name="desc" rows="3" maxlength="600"></textarea></label>
+            </div>
+            <p class="q-error" role="alert" hidden></p>
+            <div class="quote-foot">
+              <small data-q="note">Ao enviar, o WhatsApp abre com o resumo pronto para você mandar.</small>
+              <button type="submit" class="btn btn-red magnetic"><span data-q="send">Enviar pelo WhatsApp</span> <span class="arr">↗</span></button>
+            </div>
+          </form>
       </div>
     </section>
   </main>
