@@ -834,3 +834,80 @@
   document.querySelectorAll('.theme-dot').forEach(b=>b.addEventListener('click',()=>setTheme(b.dataset.theme)));
   setLanguage(savedLang);setTheme(savedTheme);
 })();
+
+/* ===== Formulário de orçamento → WhatsApp (liquid glass) ===== */
+(function () {
+  var form = document.getElementById('quote-form');
+  if (!form) return;
+  var WA = 'https://wa.me/5538992188316?text=';
+  var toggle = document.getElementById('quote-toggle');
+  var Q = {
+    pt: { title:'Orçamento rápido', toggle:'Pedir um orçamento', toggleSub:'Preencha em 30 segundos', toggleClose:'Fechar formulário', heading:'Conte sobre o seu projeto.', sub:'Preencha os campos e a mensagem chega direto no meu WhatsApp, já organizada.', lName:'Seu nome', lType:'Tipo de projeto', lDeadline:'Prazo', lBudget:'Orçamento aproximado', lDesc:'Conte mais (opcional)', pick:'Selecione uma opção', optInst:'Site institucional', optLanding:'Landing page', optMenu:'Cardápio digital', optSystem:'Sistema ou automação', optOther:'Outro', dlUrgent:'Urgente (até 2 semanas)', dlMonth:'Entre 1 e 2 meses', dlFlex:'Sem pressa', dlUnsure:'Ainda não sei', bgLow:'Até R$ 1.000', bgMid:'R$ 1.000 a R$ 3.000', bgHigh:'R$ 3.000 a R$ 8.000', bgTop:'Acima de R$ 8.000', bgUnsure:'Ainda não sei', note:'Ao enviar, o WhatsApp abre com o resumo pronto para você mandar.', send:'Enviar pelo WhatsApp', errName:'Informe seu nome.', errType:'Escolha o tipo de projeto.', msgHi:'Olá Arthur! Quero um orçamento.', mName:'Nome', mType:'Tipo de projeto', mDeadline:'Prazo', mBudget:'Orçamento', mDesc:'Detalhes' },
+    en: { title:'Quick quote', toggle:'Request a quote', toggleSub:'Fill it in under 30 seconds', toggleClose:'Close form', heading:'Tell me about your project.', sub:'Fill in the fields and the message goes straight to my WhatsApp, already organized.', lName:'Your name', lType:'Project type', lDeadline:'Deadline', lBudget:'Approximate budget', lDesc:'Tell me more (optional)', pick:'Select an option', optInst:'Business website', optLanding:'Landing page', optMenu:'Digital menu', optSystem:'System or automation', optOther:'Other', dlUrgent:'Urgent (up to 2 weeks)', dlMonth:'1 to 2 months', dlFlex:'No rush', dlUnsure:'Not sure yet', bgLow:'Up to R$ 1,000', bgMid:'R$ 1,000 to R$ 3,000', bgHigh:'R$ 3,000 to R$ 8,000', bgTop:'Above R$ 8,000', bgUnsure:'Not sure yet', note:'When you send, WhatsApp opens with the summary ready to go.', send:'Send via WhatsApp', errName:'Please enter your name.', errType:'Choose a project type.', msgHi:'Hi Arthur! I would like a quote.', mName:'Name', mType:'Project type', mDeadline:'Deadline', mBudget:'Budget', mDesc:'Details' },
+    es: { title:'Presupuesto rápido', toggle:'Pedir un presupuesto', toggleSub:'Complétalo en 30 segundos', toggleClose:'Cerrar formulario', heading:'Cuéntame sobre tu proyecto.', sub:'Completa los campos y el mensaje llega directo a mi WhatsApp, ya organizado.', lName:'Tu nombre', lType:'Tipo de proyecto', lDeadline:'Plazo', lBudget:'Presupuesto aproximado', lDesc:'Cuéntame más (opcional)', pick:'Selecciona una opción', optInst:'Sitio institucional', optLanding:'Landing page', optMenu:'Carta digital', optSystem:'Sistema o automatización', optOther:'Otro', dlUrgent:'Urgente (hasta 2 semanas)', dlMonth:'Entre 1 y 2 meses', dlFlex:'Sin prisa', dlUnsure:'Aún no lo sé', bgLow:'Hasta R$ 1.000', bgMid:'R$ 1.000 a R$ 3.000', bgHigh:'R$ 3.000 a R$ 8.000', bgTop:'Más de R$ 8.000', bgUnsure:'Aún no lo sé', note:'Al enviar, WhatsApp se abre con el resumen listo para mandar.', send:'Enviar por WhatsApp', errName:'Indica tu nombre.', errType:'Elige el tipo de proyecto.', msgHi:'¡Hola Arthur! Quiero un presupuesto.', mName:'Nombre', mType:'Tipo de proyecto', mDeadline:'Plazo', mBudget:'Presupuesto', mDesc:'Detalles' }
+  };
+  var select = document.getElementById('language-select');
+  function lang() { return (select && Q[select.value]) ? select.value : 'pt'; }
+  function applyLang() {
+    var t = Q[lang()];
+    document.querySelectorAll('[data-q]').forEach(function (el) {
+      var v = t[el.dataset.q];
+      if (v != null) el.textContent = v;
+    });
+    if (toggle) toggle.querySelector('[data-q="toggle"]').textContent = form.hidden ? t.toggle : t.toggleClose;
+  }
+  if (select) select.addEventListener('change', applyLang);
+  applyLang();
+
+  // Botão que expande/recolhe o formulário
+  if (toggle) {
+    toggle.addEventListener('click', function () {
+      var opening = form.hidden;
+      form.hidden = !opening;
+      toggle.setAttribute('aria-expanded', String(opening));
+      applyLang();
+      if (opening) form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+
+  // Brilho que acompanha o ponteiro (efeito de vidro líquido)
+  form.addEventListener('pointermove', function (e) {
+    var r = form.getBoundingClientRect();
+    form.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    form.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  });
+
+  var errBox = form.querySelector('.q-error');
+  function fail(field, msg) {
+    field.classList.add('invalid');
+    errBox.textContent = msg;
+    errBox.hidden = false;
+    field.querySelector('input,select').focus();
+  }
+
+  form.addEventListener('input', function () {
+    form.querySelectorAll('.q-field.invalid').forEach(function (f) { f.classList.remove('invalid'); });
+    errBox.hidden = true;
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var t = Q[lang()];
+    var els = form.elements;
+    var name = els.namedItem('name').value.trim();
+    var type = els.namedItem('type');
+    var deadline = els.namedItem('deadline');
+    var budget = els.namedItem('budget');
+    var desc = els.namedItem('desc').value.trim();
+
+    if (!name) return fail(els.namedItem('name').closest('.q-field'), t.errName);
+    if (!type.value) return fail(type.closest('.q-field'), t.errType);
+
+    var parts = [t.msgHi, '', t.mName + ': ' + name, t.mType + ': ' + type.options[type.selectedIndex].textContent];
+    if (deadline.value) parts.push(t.mDeadline + ': ' + deadline.options[deadline.selectedIndex].textContent);
+    if (budget.value) parts.push(t.mBudget + ': ' + budget.options[budget.selectedIndex].textContent);
+    if (desc) parts.push(t.mDesc + ': ' + desc);
+
+    window.open(WA + encodeURIComponent(parts.join('\n')), '_blank', 'noopener');
+  });
+})();
