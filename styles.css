@@ -543,3 +543,37 @@
 .brand-logo i{position:absolute;inset:0;display:block;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;transition:background-color .5s var(--ease)}
 .brand-logo .lg-a{background:var(--red);-webkit-mask-image:url(assets/logo-accent.png);mask-image:url(assets/logo-accent.png)}
 .brand-logo .lg-c{background:#f3f1ee;-webkit-mask-image:url(assets/logo-white.png);mask-image:url(assets/logo-white.png)}
+
+    /* ===== Formulário de orçamento — liquid glass ===== */
+    .quote{position:relative;z-index:1;isolation:isolate;overflow:hidden;max-width:760px;margin:56px auto 0;padding:clamp(24px,4vw,44px);border-radius:32px;text-align:left;border:1px solid rgba(255,255,255,.14);background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.03) 42%,rgba(255,255,255,.06));-webkit-backdrop-filter:blur(26px) saturate(180%);backdrop-filter:blur(26px) saturate(180%);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -1px 0 rgba(255,255,255,.04),inset 0 0 40px rgba(255,255,255,.03),0 30px 80px -20px rgba(0,0,0,.6)}
+    .quote::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;background:radial-gradient(360px circle at var(--mx,30%) var(--my,0%),rgba(255,255,255,.16),transparent 60%);transition:opacity .4s}
+    .quote::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;padding:1px;background:linear-gradient(160deg,rgba(255,255,255,.55),rgba(255,255,255,0) 35%,rgba(var(--accent-rgb),.4) 75%,rgba(255,255,255,.18));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+    .quote-head h3{font-size:clamp(30px,4vw,46px);margin:18px 0 10px}
+    .quote-head p{color:var(--muted);font-size:16px;line-height:1.6;max-width:560px}
+    .quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 18px;margin-top:28px}
+    .q-wide{grid-column:1/-1}
+    .q-field{display:flex;flex-direction:column;gap:8px;min-width:0}
+    .q-field>span{font-family:var(--font-m);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+    .q-field input,.q-field select,.q-field textarea{width:100%;font:500 16px var(--font-b);color:var(--text);padding:14px 16px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.02));-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 8px 24px -12px rgba(0,0,0,.6);outline:none;transition:border-color .3s,box-shadow .3s,background .3s}
+    .q-field select{appearance:none;-webkit-appearance:none;padding-right:44px;cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,var(--red) 50%),linear-gradient(135deg,var(--red) 50%,transparent 50%),linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.02));background-position:calc(100% - 21px) 52%,calc(100% - 15px) 52%,0 0;background-size:5px 5px,5px 5px,100% 100%;background-repeat:no-repeat}
+    .q-field select option{background:#101010;color:var(--text)}
+    .q-field textarea{resize:vertical;min-height:88px;font-family:var(--font-b)}
+    .q-field input::placeholder,.q-field textarea::placeholder{color:var(--faint)}
+    .q-field input:focus,.q-field select:focus,.q-field textarea:focus{border-color:var(--red);background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.03));box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 0 0 4px rgba(var(--accent-rgb),.16),0 0 30px rgba(var(--accent-rgb),.2)}
+    .q-field.invalid input,.q-field.invalid select{border-color:#ff6b6b;box-shadow:0 0 0 4px rgba(255,107,107,.14)}
+    .q-error{margin-top:16px;font-family:var(--font-m);font-size:12px;letter-spacing:.04em;color:#ff8a8a}
+    .q-error[hidden]{display:none}
+    .quote-foot{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-top:26px}
+    .quote-foot small{font-family:var(--font-m);font-size:11px;letter-spacing:.04em;color:var(--faint);max-width:340px;line-height:1.6}
+    .quote .btn{cursor:pointer;border:0;font-family:inherit}
+    @media(max-width:700px){.quote-grid{grid-template-columns:1fr}.quote{border-radius:26px}}
+    @media (prefers-reduced-motion:reduce){.quote::before{transition:none}}
+
+    /* ===== Orçamento recolhível ===== */
+    .quote-toggle-wrap{display:flex;justify-content:center;margin-top:44px}
+    .quote-toggle{width:min(100%,420px)}
+    .quote-toggle .q-toggle-txt{display:flex;flex-direction:column;gap:4px}
+    .quote-toggle .q-toggle-txt small{font-family:var(--font-m);font-size:10.5px;letter-spacing:.08em;color:var(--muted);font-weight:400}
+    #quote-form{margin:26px auto 0}
+    #quote-form[hidden]{display:none}
+    #quote-form{animation:landingReveal .45s var(--ease) both}
