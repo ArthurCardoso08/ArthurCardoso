@@ -460,6 +460,8 @@
     .project .bg.art-1 .sausage{display:none}
     .project .bg.art-pizza{background:#f6f3ee url("assets/image-3.webp") center/cover no-repeat;filter:saturate(1.05) contrast(1.03)}
     .project .bg.art-pizza .sausage{display:none}
+    .project .bg.art-acai{background:#090909 url("assets/cantinho-acai.png") center/contain no-repeat;filter:saturate(1.05) contrast(1.03)}
+    .project .bg.art-acai::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.08)}
   
     /* ===== Explicação: landing page — seção adicionada ===== */
     .landing-info{padding:0 0 clamp(90px,11vw,150px)}
